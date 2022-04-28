@@ -65,10 +65,10 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`id`, `firstname`, `name`, `username`, `email`, `password`, `mobile`, `company`, `cid`,`roleid`, `isActive`, `created_at`, `updated_at`) VALUES
-(1, 'Antoine', 'Nivard', 'anivard', 'antoine@nivard.net', '188000e1f0fb4075ae1c659697b96296f982cdc4', '01717090233', 'Ouest Cloud', 1, 1, 0, '2020-03-12 16:23:01', '2020-03-12 16:23:01'),
-(2, 'Antoine', 'Nivard', 'anivard2', 'antoine2@nivard.net', '188000e1f0fb4075ae1c659697b96296f982cdc4', '01717090233', 'Ouest Cloud', 2, 2, 0, '2020-03-12 16:23:01', '2020-03-12 16:23:01'),
-(3, 'Antoine', 'Nivard', 'anivard3', 'antoine3@nivard.net', '188000e1f0fb4075ae1c659697b96296f982cdc4', '01717090233', 'Ouest Cloud', 3, 3, 0, '2020-03-12 16:23:01', '2020-03-12 16:23:01'),
-(4, 'Antoine', 'Nivard', 'anivard4', 'antoine4@nivard.net', '188000e1f0fb4075ae1c659697b96296f982cdc4', '01717090233', 'Ouest Cloud', 4, 4, 0, '2020-03-12 16:23:01', '2020-03-12 16:23:01');
+(1, 'Antoine', 'Nivard', 'anivard', 'antoine@abcdef.net', '188000e1f0fb4075ae1c659697b96296f982cdc4', '01717090233', 'Ouest Cloud', 1, 1, 0, '2020-03-12 16:23:01', '2020-03-12 16:23:01'),
+(2, 'Antoine', 'Nivard', 'anivard2', 'antoine2@abcdef.net', '188000e1f0fb4075ae1c659697b96296f982cdc4', '01717090233', 'Ouest Cloud', 2, 2, 0, '2020-03-12 16:23:01', '2020-03-12 16:23:01'),
+(3, 'Antoine', 'Nivard', 'anivard3', 'antoine3@iabcdef.net', '188000e1f0fb4075ae1c659697b96296f982cdc4', '01717090233', 'Ouest Cloud', 3, 3, 0, '2020-03-12 16:23:01', '2020-03-12 16:23:01'),
+(4, 'Antoine', 'Nivard', 'anivard4', 'antoine4@abcdef.net', '188000e1f0fb4075ae1c659697b96296f982cdc4', '01717090233', 'Ouest Cloud', 4, 4, 0, '2020-03-12 16:23:01', '2020-03-12 16:23:01');
 
 -- --------------------------------------------------------
 
