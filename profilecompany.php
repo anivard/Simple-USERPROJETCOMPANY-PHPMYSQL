@@ -13,7 +13,7 @@ if (isset($_GET['id'])) {
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
-  $updateUser = $users->updateUserByIdInfo($userid, $_POST);
+  $updateUser = $users->updateUserByIdInfoAdmin($userid, $_POST);
 
 }
 if (isset($updateUser)) {
@@ -27,7 +27,7 @@ if (isset($updateUser)) {
 
  <div class="card ">
    <div class="card-header">
-          <h3>User Profile <span class="float-right"> <a href="index.php" class="btn btn-primary">Back</a> </h3>
+          <h3>Company Profile <span class="float-right"> <a href="index.php" class="btn btn-primary">Back</a> </h3>
         </div>
         <div class="card-body">
 

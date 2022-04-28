@@ -22,7 +22,7 @@ $users = new Users();
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Ouest Cloud - Admin Interface des Acteurs</title>
+    <title>Ouest Cloud - Interface admin. des Acteurs</title>
     <link rel="stylesheet" href="assets/bootstrap.min.css">
     <link href="https://use.fontawesome.com/releases/v5.0.4/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/dataTables.bootstrap4.min.css">
@@ -63,55 +63,10 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
             <?php if (Session::get('roleid') == '1') { ?>
               <li class="nav-item">
 
-                  <a class="nav-link" href="index.php"><i class="fas fa-users mr-2"></i>Record Lists </span></a>
-	      </li>
-
-            <li class="nav-item
-              <?php
-
-                          $path = $_SERVER['SCRIPT_FILENAME'];
-                          $current = basename($path, '.php');
-                          if ($current == 'addRecord') {
-                            echo " active ";
-                          }
-
-                         ?>">
-
-                <a class="nav-link" href="addRecord.php"><i class="fas fa-user-plus mr-2"></i>Add Record </span></a>
+                  <a class="nav-link" href="index.php"><i class="fas fa-users mr-2"></i>User lists </span></a>
               </li>
-
-
-             <li class="nav-item
-              <?php
-
-                          $path = $_SERVER['SCRIPT_FILENAME'];
-                          $current = basename($path, '.php');
-                          if ($current == 'addCompany') {
-                            echo " active ";
-                          }
-
-                         ?>">
-
-                <a class="nav-link" href="addCompany.php"><i class="fas fa-user-plus mr-2"></i>Add Company </span></a>
-              </li>
-
-
-           <li class="nav-item
-              <?php
-
-                          $path = $_SERVER['SCRIPT_FILENAME'];
-                          $current = basename($path, '.php');
-                          if ($current == 'listuser') {
-                            echo " active ";
-                          }
-
-                         ?>">
-
-                <a class="nav-link" href="listuser.php"><i class="fas fa-user-plus mr-2"></i>User Lists </span></a>
-              </li>
-
-
               <li class="nav-item
+
               <?php
 
                           $path = $_SERVER['SCRIPT_FILENAME'];
@@ -124,30 +79,21 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
 
                 <a class="nav-link" href="addUser.php"><i class="fas fa-user-plus mr-2"></i>Add user </span></a>
               </li>
-
-
-
-
-	    <?php  } ?>
-
-          <li class="nav-item
+            <?php  } ?>
+            <li class="nav-item
             <?php
 
-                                $path = $_SERVER['SCRIPT_FILENAME'];
-                                $current = basename($path, '.php');
-                                if ($current == 'companyprofile') {
-                                        echo "active ";
-                                }
+      				$path = $_SERVER['SCRIPT_FILENAME'];
+      				$current = basename($path, '.php');
+      				if ($current == 'addCompany') {
+      					echo "active ";
+      				}
 
-                         ?>
+			?>">
 
-            ">
-
-              <a class="nav-link" href="profilecompany.php?id=<?php echo Session::get("cid"); ?>"><i class="fab fa-500px mr-2"></i>Company Profile <span class="sr-only">(current)</span></a>
-            </li>
-
-
-
+	      <a class="nav-link" href="addCompany.php"><i class="fas fa-user-plus mr-2"></i>Add Company</span></a>
+              </li>
+            <?php  } ?>
             <li class="nav-item
             <?php
 
@@ -157,13 +103,16 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
                                         echo "active ";
                                 }
 
-                         ?>
+			?>
+		">
 
-            ">
+
 
               <a class="nav-link" href="profile.php?id=<?php echo Session::get("id"); ?>"><i class="fab fa-500px mr-2"></i>Profile <span class="sr-only">(current)</span></a>
             </li>
-
+            <li class="nav-item">
+              <a class="nav-link" href="company.php?id=<?php echo Session::get("cid"); ?>"><i class="fab fa-500px mr-2"></i>Company Profile <span class="sr-only">(current)</span></a>
+            </li>
 
 
             <li class="nav-item">
@@ -172,6 +121,7 @@ if (isset($_GET['action']) && $_GET['action'] == 'logout') {
           <?php }else{ ?>
 
               <li class="nav-item
+
               <?php
 
                           $path = $_SERVER['SCRIPT_FILENAME'];

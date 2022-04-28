@@ -47,29 +47,29 @@ if (isset($updateUser)) {
 
           <form class="" action="" method="POST">
              <div class="form-group">
-                <label for="firstname">Your first name</label>
-                <input type="text" name="firstname" value="<?php echo $getUinfo->firstname; ?>" class="form-control">
+                <label for="prenom">Votre prénom</label>
+                <input type="text" name="prenom" value="<?php echo $getUinfo->prenom; ?>" class="form-control">
               </div>
             <div class="form-group">
-                <label for="name">Your name</label>
+                <label for="name">Votre nom</label>
                 <input type="text" name="name" value="<?php echo $getUinfo->name; ?>" class="form-control">
               </div>
 
 	      <div class="form-group">
-                <label for="username">Your login</label>
+                <label for="username">Votre login</label>
                 <input type="text" name="username" value="<?php echo $getUinfo->username; ?>" class="form-control">
               </div>
               <div class="form-group">
-                <label for="email">Your email</label>
+                <label for="email">Adresse email</label>
                 <input type="email" id="email" name="email" value="<?php echo $getUinfo->email; ?>" class="form-control">
               </div>
               <div class="form-group">
-                <label for="mobile">Your mobile number</label>
+                <label for="mobile">Téléphone portable</label>
                 <input type="text" id="mobile" name="mobile" value="<?php echo $getUinfo->mobile; ?>" class="form-control">
               </div>
 
              <div class="form-group">
-                <label for="Company">Your company</label>
+                <label for="Company">Structure</label>
                 <input type="text" id="Company" name="company" value="<?php echo $getUinfo->company; ?>" class="form-control">
               </div>
 
@@ -91,23 +91,15 @@ if (isset($updateUser)) {
                 if($getUinfo->roleid == '1'){?>
                   <option value="1" selected='selected'>Admin</option>
                   <option value="2">Editor</option>
-                  <option value="3">Company editor</option>
-                  <option value="4">User only</option>
-		<?php }elseif($getUinfo->roleid == '2'){?>
+                  <option value="3">User only</option>
+                <?php }elseif($getUinfo->roleid == '2'){?>
                   <option value="1">Admin</option>
                   <option value="2" selected='selected'>Editor</option>
-		  <option value="3">Company editor</option>
-                  <option value="4">User only</option>
+                  <option value="3">User only</option>
                 <?php }elseif($getUinfo->roleid == '3'){?>
                   <option value="1">Admin</option>
                   <option value="2">Editor</option>
-		  <option value="3" selected='selected'>Company editor</option>
-                  <option value="4">User only</option>
-               <?php }elseif($getUinfo->roleid == '4'){?>
-                  <option value="1">Admin</option>
-                  <option value="2">Editor</option>
-                  <option value="3">Company editor</option>
-                  <option value="4" selected='selected'>User only</option>
+                  <option value="3" selected='selected'>User only</option>
 
 
                 <?php } ?>

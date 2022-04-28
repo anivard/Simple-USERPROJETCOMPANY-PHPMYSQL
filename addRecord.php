@@ -5,13 +5,13 @@ $sId =  Session::get('roleid');
 if ($sId === '1') { ?>
 
 <?php
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addUser'])) {
+if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['addRecord'])) {
 
-  $userAdd = $users->addNewUserByAdmin($_POST);
+  $userAdd = $users->addNewRecordByAdmin($_POST);
 }
 
-if (isset($userAdd)) {
-  echo $userAdd;
+if (isset($recordAdd)) {
+  echo $recordAdd;
 }
 
 
@@ -20,7 +20,7 @@ if (isset($userAdd)) {
 
  <div class="card ">
    <div class="card-header">
-          <h3 class='text-center'>Add New User</h3>
+          <h3 class='text-center'>Add New Company Record</h3>
         </div>
         <div class="cad-body">
 

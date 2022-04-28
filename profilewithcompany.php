@@ -69,8 +69,8 @@ if (isset($updateUser)) {
               </div>
 
              <div class="form-group">
-                <label for="Company">Your company</label>
-                <input type="text" id="Company" name="company" value="<?php echo $getUinfo->company; ?>" class="form-control">
+                <label for="company">Your company</label>
+                <input type="text" id="company" name="company" value="<?php echo $getUinfo->company; ?>" class="form-control">
               </div>
 
 
@@ -82,7 +82,16 @@ if (isset($updateUser)) {
                 echo "d-none";
               } ?>
               ">
+
                 <div class="form-group">
+                  <label for="Company">Your company ID</label>
+                  <input type="text" id="Company" name="company" value="<?php echo $getUinfo->cid; ?>" class="form-control">
+                </div>
+
+
+
+
+		<div class="form-group">
                   <label for="sel1">Select user Role</label>
                   <select class="form-control" name="roleid" id="roleid">
 

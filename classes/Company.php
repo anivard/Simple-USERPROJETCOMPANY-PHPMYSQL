@@ -4,7 +4,7 @@ include 'lib/Database.php';
 include_once 'lib/Session.php';
 
 
-class Users{
+class Company{
 
 
   // Db Property
@@ -25,149 +25,39 @@ class Users{
 
 
   // Check Exist Email Address Method
-  public function checkExistEmail($email){
-    $sql = "SELECT email from  tbl_users WHERE email = :email";
-    $stmt = $this->db->pdo->prepare($sql);
-    $stmt->bindValue(':email', $email);
-     $stmt->execute();
-    if ($stmt->rowCount()> 0) {
-      return true;
-    }else{
-      return false;
-    }
-  }
+ //  public function checkExistEmail($email){
+ //   $sql = "SELECT email from  tbl_users WHERE email = :email";
+ //   $stmt = $this->db->pdo->prepare($sql);
+ //   $stmt->bindValue(':email', $email);
+ //    $stmt->execute();
+ //   if ($stmt->rowCount()> 0) {
+ //     return true;
+ //   }else{
+ //     return false;
+ //   }
+ // }
 
 
 
-  // User Registration Method
-  public function userRegistration($data){
-    $name = $data['name'];
-    $username = $data['username'];
-    $email = $data['email'];
-    $mobile = $data['mobile'];
-    $roleid = $data['roleid'];
-    $password = $data['password'];
-
-    $checkEmail = $this->checkExistEmail($email);
-
-    if ($name == "" || $username == "" || $email == "" || $mobile == "" || $password == "") {
-      $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
-<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-<strong>Error !</strong> Please, User Registration field must not be Empty !</div>';
-        return $msg;
-    }elseif (strlen($username) < 3) {
-      $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
-<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-<strong>Error !</strong> Username is too short, at least 3 Characters !</div>';
-        return $msg;
-    }elseif (filter_var($mobile,FILTER_SANITIZE_NUMBER_INT) == FALSE) {
-      $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
-<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-<strong>Error !</strong> Enter only Number Characters for Mobile number field !</div>';
-        return $msg;
-
-    }elseif(strlen($password) < 5) {
-      $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
-<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-<strong>Error !</strong> Password at least 6 Characters !</div>';
-        return $msg;
-    }elseif(!preg_match("#[0-9]+#",$password)) {
-      $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
-<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-<strong>Error !</strong> Your Password Must Contain At Least 1 Number !</div>';
-        return $msg;
-    }elseif(!preg_match("#[a-z]+#",$password)) {
-      $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
-<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-<strong>Error !</strong> Your Password Must Contain At Least 1 Number !</div>';
-        return $msg;
-    }elseif (filter_var($email, FILTER_VALIDATE_EMAIL === FALSE)) {
-      $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
-<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-<strong>Error !</strong> Invalid email address !</div>';
-        return $msg;
-    }elseif ($checkEmail == TRUE) {
-      $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
-<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-<strong>Error !</strong> Email already Exists, please try another Email... !</div>';
-        return $msg;
-    }else{
-
-      $sql = "INSERT INTO tbl_users(name, username, email, password, mobile, roleid) VALUES(:name, :username, :email, :password, :mobile, :roleid)";
-      $stmt = $this->db->pdo->prepare($sql);
-      $stmt->bindValue(':name', $name);
-      $stmt->bindValue(':username', $username);
-      $stmt->bindValue(':email', $email);
-      $stmt->bindValue(':password', SHA1($password));
-      $stmt->bindValue(':mobile', $mobile);
-      $stmt->bindValue(':roleid', $roleid);
-      $result = $stmt->execute();
-      if ($result) {
-        $msg = '<div class="alert alert-success alert-dismissible mt-3" id="flash-msg">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Success !</strong> Wow, you have Registered Successfully !</div>';
-          return $msg;
-      }else{
-        $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
-  <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-  <strong>Error !</strong> Something went Wrong !</div>';
-          return $msg;
-      }
-
-
-
-    }
-
-
-
-
-
-  }
   // Add New User By Admin
-  public function addNewUserByAdmin($data){
-    $name = $data['name'];
-    $username = $data['username'];
-    $email = $data['email'];
-    $mobile = $data['mobile'];
-    $company = $data['company'];
-    $cid = $data['cid'];
-    $roleid = $data['roleid'];
-    $password = $data['password'];
-
-    $checkEmail = $this->checkExistEmail($email);
-
-    if ($name == "" || $username == "" || $email == "" || $mobile == "" || $password == "") {
-      $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
-<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-<strong>Error !</strong> Input fields must not be Empty !</div>';
-        return $msg;
-    }elseif (strlen($username) < 3) {
-      $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
-<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-<strong>Error !</strong> Username is too short, at least 3 Characters !</div>';
-        return $msg;
-    }elseif (filter_var($mobile,FILTER_SANITIZE_NUMBER_INT) == FALSE) {
-      $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
-<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-<strong>Error !</strong> Enter only Number Characters for Mobile number field !</div>';
-        return $msg;
-
-    }elseif(strlen($password) < 5) {
-      $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
-<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-<strong>Error !</strong> Password at least 6 Characters !</div>';
-        return $msg;
-    }elseif(!preg_match("#[0-9]+#",$password)) {
-      $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
-<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-<strong>Error !</strong> Your Password Must Contain At Least 1 Number !</div>';
-        return $msg;
-    }elseif(!preg_match("#[a-z]+#",$password)) {
-      $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
-<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-<strong>Error !</strong> Your Password Must Contain At Least 1 Number !</div>';
-        return $msg;
-    }elseif (filter_var($email, FILTER_VALIDATE_EMAIL === FALSE)) {
+  public function addNewCompanyByAdmin($data){
+   $companyname = $data['companyname'];
+   $typecompany = $data['typecompany'];
+   $address1 = $data['address1'];
+   $address2 = $data['address2'];
+   $zipcode = $data['zipcode'];
+   $city = $data['city'];
+   $area = $data['area'];
+   $department = $data['department'];
+   $region = $data['region'];
+   $adminrepre = $data['adminrepre'];
+   $salesrepre = $data['salesrepre'];
+   $techrepre = $data['techrepre'];
+   $website = $data['website'];
+   $emailcontact = $data['emailcontact'];	  
+	  
+        
+    if (filter_var($email, FILTER_VALIDATE_EMAIL === FALSE)) {
       $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 <strong>Error !</strong> Invalid email address !</div>';
@@ -178,17 +68,25 @@ class Users{
 <strong>Error !</strong> Email already Exists, please try another Email... !</div>';
         return $msg;
     }else{
-
-      $sql = "INSERT INTO tbl_users(name, username, email, password, mobile, company, cid, roleid) VALUES(:name, :username, :email, :password, :mobile, :company, :cid, :roleid)";
+	    
+	    
+      $sql = "INSERT INTO tbl_company(companyname, typecompany, address1, address2, zipcode, city, area, department, region, adminrepre salesrepre, techrepre, website, emailcontact) VALUES(:companyname, :typecompany, :address1, :address2, :zipcode, :city, :area, :department, :region, :adminrepre, :salesrepre, :techrepre, :website, :emailcontact)";
       $stmt = $this->db->pdo->prepare($sql);
-      $stmt->bindValue(':name', $name);
-      $stmt->bindValue(':username', $username);
-      $stmt->bindValue(':email', $email);
-      $stmt->bindValue(':password', SHA1($password));
-      $stmt->bindValue(':mobile', $mobile);
-      $stmt->bindValue(':company', $company);
-      $stmt->bindValue(':cid', $cid);
-      $stmt->bindValue(':roleid', $roleid);
+      $stmt->bindValue(':companyname', $companyname);
+      $stmt->bindValue(':typecompany', $typecompany);
+      $stmt->bindValue(':address1', $address1);
+      $stmt->bindValue(':address2', $address2);
+      $stmt->bindValue(':zipcode', $zipcode);
+      $stmt->bindValue(':city', $city);
+      $stmt->bindValue(':department', $department);
+      $stmt->bindValue(':region', $region);
+      $stmt->bindValue(':adminrepre', $adminrepre);
+      $stmt->bindValue(':salesrepre', $salesrepre);
+      $stmt->bindValue(':techrepre', $techrepre);
+      $stmt->bindValue(':website', $website);
+      $stmt->bindValue(':emailcontact', $emailcontact);
+
+
       $result = $stmt->execute();
       if ($result) {
         $msg = '<div class="alert alert-success alert-dismissible mt-3" id="flash-msg">
@@ -330,12 +228,13 @@ class Users{
   //
   //   Get Single User Information By Id Method
     public function updateUserByIdInfo($userid, $data){
-      $firstname = $data['firstname'];
       $name = $data['name'];
       $username = $data['username'];
       $email = $data['email'];
       $mobile = $data['mobile'];
       $roleid = $data['roleid'];
+
+
 
       if ($name == "" || $username == ""|| $email == "" || $mobile == ""  ) {
         $msg = '<div class="alert alert-danger alert-dismissible mt-3" id="flash-msg">
@@ -362,16 +261,14 @@ class Users{
       }else{
 
         $sql = "UPDATE tbl_users SET
-          firstname = :firstname,
-	  name = :name,
+          name = :name,
           username = :username,
           email = :email,
           mobile = :mobile,
           roleid = :roleid
           WHERE id = :id";
           $stmt= $this->db->pdo->prepare($sql);
-          $stmt->bindValue(':firstname', $firstname);
-	  $stmt->bindValue(':name', $name);
+          $stmt->bindValue(':name', $name);
           $stmt->bindValue(':username', $username);
           $stmt->bindValue(':email', $email);
           $stmt->bindValue(':mobile', $mobile);
